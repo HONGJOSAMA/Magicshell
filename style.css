@@ -174,10 +174,39 @@ h1#main-title {
     color: var(--button-outline-dark);
 }
 
+body {
+    font-family: 'Inter', sans-serif;
+    letter-spacing: -0.05em;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Align items to start for fixed nav */
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding-top: 60px; /* Space for fixed nav */
+    transition: background-color 0.3s, color 0.3s;
+}
+
 nav {
+    position: fixed;
+    top: 0;
     width: 100%;
-    margin-top: 20px;
-    text-align: center;
+    z-index: 1000;
+    padding: 10px 0;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+}
+
+.light-theme nav {
+    border-color: var(--border-color-light);
+    background-color: rgba(245, 245, 247, 0.8);
+}
+
+.dark-theme nav {
+    border-color: var(--border-color-dark);
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
 nav ul {
@@ -211,6 +240,8 @@ nav a:hover {
 }
 
 .page-section {
+    display: none; /* Hide by default */
+    scroll-margin-top: 80px; /* Adjust for fixed nav */
     width: 90%;
     max-width: 600px;
     margin: 40px auto;
@@ -221,6 +252,10 @@ nav a:hover {
     border: 1px solid;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s, border-color 0.3s;
+}
+
+.page-section.active-section {
+    display: block; /* Show when active */
 }
 
 .light-theme .page-section {
@@ -266,19 +301,4 @@ nav a:hover {
 .faq-item p {
     margin-left: 15px;
     display: none; /* Hidden by default */
-}
-
-/* Add some basic responsiveness */
-@media (max-width: 600px) {
-    .container, .page-section {
-        padding: 20px;
-        width: auto;
-    }
-    nav ul {
-        flex-direction: column;
-        gap: 10px;
-    }
-    nav a {
-        display: block;
-    }
 }
