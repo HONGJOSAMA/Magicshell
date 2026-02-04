@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const askButton = document.getElementById('askButton');
     const answerDiv = document.getElementById('answer');
     const themeToggle = document.getElementById('theme-toggle');
+    const questionInput = document.getElementById('question'); // Declare questionInput
     const body = document.body;
 
     const answers = ["Sure", "Pass", "Go", "Wait"];
@@ -27,5 +28,12 @@ document.addEventListener('DOMContentLoaded', () => {
     askButton.addEventListener('click', () => {
         const randomIndex = Math.floor(Math.random() * answers.length);
         answerDiv.textContent = answers[randomIndex];
+    });
+
+    // Trigger askButton on Enter key press in question input
+    questionInput.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+            askButton.click();
+        }
     });
 });
