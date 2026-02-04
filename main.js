@@ -3,7 +3,6 @@ const askButton = document.getElementById("askButton");
 const answerDiv = document.getElementById("answer");
 const questionInput = document.getElementById("question");
 const themeToggleButton = document.getElementById("theme-toggle");
-const walkieTalkieToggleButton = document.getElementById("walkie-talkie-toggle");
 const body = document.body;
 
 // Check for saved theme preference
