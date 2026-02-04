@@ -1,98 +1,51 @@
+:root {
+    --bg-color: #f0f0f0;
+    --container-bg-color: white;
+    --text-color: #333;
+    --box-shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode {
+    --bg-color: #333;
+    --container-bg-color: #444;
+    --text-color: #f0f0f0;
+    --box-shadow-color: rgba(255, 255, 255, 0.1);
+}
+
 body {
     font-family: sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #f0f0f0; /* Neutral light background */
+    background-color: var(--bg-color); /* Use CSS variable */
     margin: 0;
-    color: #333; /* Neutral dark text */
+    color: var(--text-color); /* Use CSS variable */
 }
 
 .container {
     text-align: center;
-    background-color: white; /* Neutral light background */
+    background-color: var(--container-bg-color); /* Use CSS variable */
     padding: 2rem;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Neutral shadow */
-    position: relative; /* Keep for bolt positioning */
+    box-shadow: 0 4px 8px var(--box-shadow-color); /* Use CSS variable */
+    position: relative; /* Keep for general layout */
     width: 320px; /* Keep for general layout */
 }
 
-body.walkie-talkie-mode {
-    font-family: 'Roboto Mono', monospace;
-    background-image: url('https://www.transparenttextures.com/patterns/dark-wood.png');
-    background-color: #3d3a3a; /* Dark wood background color */
-    color: #fff;
-}
-
-body.walkie-talkie-mode .container {
-    background-color: #3B3C36; /* Olive Drab */
-    border: 3px solid #3a4a20;
-    border-radius: 15px;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.7), inset 0 0 20px rgba(0,0,0,0.9); /* Enhanced shadow */
-    background-image: linear-gradient(45deg, rgba(255,255,255,0.08) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.08) 75%, transparent 75%, transparent);
-    background-size: 60px 60px;
-    padding: 30px;
-}
-
-.bolt {
-    position: absolute;
-    width: 12px;
-    height: 12px;
-    background-color: #4a4a4a;
-    border: 1px solid #2a2a2a;
-    border-radius: 50%;
-    box-shadow: inset 0 0 3px rgba(0,0,0,0.8);
-}
-
-.bolt-tl { top: 15px; left: 15px; }
-.bolt-tr { top: 15px; right: 15px; }
-.bolt-bl { bottom: 15px; left: 15px; }
-.bolt-br { bottom: 15px; right: 15px; }
-
 h1 {
-    font-family: 'Orbitron', sans-serif; /* Default for non-walkie-talkie mode */
+    font-family: sans-serif;
     font-size: 2.5rem;
-    color: #ff4141;
-    text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000, 0 0 15px #ff0000;
+    color: #333; /* Default text color */
     margin-bottom: 20px;
-}
-
-body.walkie-talkie-mode h1 {
-    font-family: 'Roboto Mono', monospace; /* Mechanical font for walkie-talkie mode */
-    color: #ff4141; /* Reddish text */
-    text-shadow: 0 0 3px #ff0000; /* Subtler glow */
-}
-
-.screen {
-    background-color: #9ACD32; /* YellowGreen - Default for non-walkie-talkie mode */
-    border: 2px solid #3a4a20;
-    border-radius: 8px;
-    padding: 10px;
-    margin: 20px 0;
-    box-shadow: inset 0 0 10px rgba(0,0,0,0.6);
-}
-
-body.walkie-talkie-mode .screen {
-    background-color: #1A2421; /* Dark green for LCD */
-    border: 2px solid #0f1816; /* Darker border */
 }
 
 #question {
     width: 100%;
-    background: transparent;
-    border: none;
-    color: #2e3b14; /* Default dark text */
-    font-family: 'Roboto Mono', monospace;
-    font-size: 1.1rem;
-    text-align: center;
-}
-
-body.walkie-talkie-mode #question {
-    color: #90EE90; /* Bright neon green for LCD text */
-    background-image: linear-gradient(0deg, transparent 95%, rgba(144, 238, 144, 0.1) 95%), linear-gradient(90deg, transparent 95%, rgba(144, 238, 144, 0.1) 95%);
-    background-size: 15px 15px; /* Grid size */
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
 #question::placeholder {
@@ -104,12 +57,9 @@ body.walkie-talkie-mode #question {
 }
 
 #answer {
-    margin: 20px 0;
-    font-size: 1.8rem;
+    margin-top: 1.5rem;
+    font-size: 1.5rem;
     font-weight: bold;
-    color: #9ACD32;
-    text-shadow: 0 0 3px #000;
-    min-height: 30px;
 }
 
 button {
@@ -117,52 +67,4 @@ button {
     padding: 0.5rem 1rem;
     font-size: 1rem;
     cursor: pointer;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f0f0f0;
-    color: #333;
-}
-
-body.walkie-talkie-mode button {
-    background-color: #4a4a4a; /* Dark grey for general buttons */
-    color: #eee;
-    border: 1px solid #666;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-}
-
-#askButton { /* Default PTT styling, for when not in walkie-talkie mode */
-    width: 80px;
-    height: 80px;
-    background-color: #FF8C00; /* DarkOrange */
-    border-radius: 50%;
-    border: 5px solid #d97800;
-    color: white;
-    font-size: 1.5rem;
-    font-weight: bold;
-    cursor: pointer;
-    text-shadow: 1px 1px 2px #000;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.4), inset 0 0 10px rgba(255,255,255,0.3);
-    transition: all 0.1s ease;
-}
-
-body.walkie-talkie-mode #askButton {
-    background-color: #FF8C00; /* DarkOrange */
-    border: 5px solid #d97800;
-    color: white;
-    text-shadow: 1px 1px 2px #000;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.4), inset 0 0 10px rgba(255,255,255,0.3);
-}
-
-#askButton:active {
-    transform: translateY(3px);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.4), inset 0 0 10px rgba(0,0,0,0.5);
-    background-color: #e07b00;
-}
-
-#serial-number {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.8rem;
-    color: #90EE90; /* Neon green for serial number */
-    margin-bottom: 10px;
-    text-shadow: 0 0 2px #000;
 }
