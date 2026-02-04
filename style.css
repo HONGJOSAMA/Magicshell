@@ -13,11 +13,18 @@ body.dark-mode {
 }
 
 body.walkie-talkie-mode {
-    --bg-color: #262626;
+    --bg-color: #204020; /* Dark green background */
     --container-bg-color: #1a1a1a;
     --text-color: #ff4141;
     --box-shadow-color: rgba(255, 65, 65, 0.2);
     font-family: 'Courier New', Courier, monospace;
+}
+
+body.walkie-talkie-mode #walkie-talkie-text-box {
+    background-color: black;
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 1rem; /* Add some space below the box */
 }
 
 body {
