@@ -12,21 +12,23 @@
     --button-outline-dark: #FFFFFF;
 }
 
+/* Base body styles */
 body {
     font-family: 'Inter', sans-serif;
     letter-spacing: -0.05em;
     display: flex;
     flex-direction: column;
-    /* Changed justify-content to flex-start to allow sections to stack from top */
+    /* Align items to start for mobile, center for desktop content */
     justify-content: flex-start;
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    /* Adjusted padding-top to account for fixed nav */
-    padding-top: 70px;
+    /* Space for fixed nav */
+    padding-top: 70px; 
     transition: background-color 0.3s, color 0.3s;
 }
 
+/* Theme specific body styles */
 body.light-theme {
     background-color: var(--bg-color-light);
     color: var(--text-color-light);
@@ -39,8 +41,8 @@ body.dark-theme {
 
 /* --- Navigation Styling --- */
 #theme-toggle {
-    position: fixed; /* Changed to fixed to better manage z-index with nav */
-    top: 20px;
+    position: fixed;
+    top: 20px; /* Aligned to top-right corner */
     right: 20px;
     z-index: 1001; /* Higher than nav */
     background: transparent;
@@ -66,7 +68,7 @@ nav {
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 1000; /* Below theme-toggle */
+    z-index: 1000;
     padding: 10px 0;
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
@@ -90,15 +92,14 @@ nav ul {
     margin: 0;
     display: flex;
     justify-content: center;
-    /* Increased gap between nav items */
-    gap: 30px;
+    gap: 30px; /* Increased gap between nav items */
 }
 
 nav a {
     text-decoration: none;
     font-weight: 700;
     font-size: 0.9rem;
-    padding: 5px 10px;
+    padding: 8px 15px; /* Increased padding */
     border-radius: 10px;
     transition: background-color 0.3s, color 0.3s;
 }
@@ -115,18 +116,19 @@ nav a:hover {
     background-color: rgba(128, 128, 128, 0.2);
 }
 
-/* --- Page Sections Styling --- */
+
+/* --- Page Sections Styling (These are the cards) --- */
 .page-section {
     /* Hide by default */
     display: none !important;
-    opacity: 0; /* For smooth transition */
-    visibility: hidden; /* For smooth transition */
-    transform: translateY(20px); /* For smooth transition */
+    opacity: 0; /* For smooth fade-in/out */
+    visibility: hidden; /* For smooth fade-in/out */
+    transform: translateY(20px); /* For smooth slide-up effect */
     transition: opacity 0.5s ease, visibility 0.5s ease, transform 0.5s ease;
 
     width: 90%;
-    max-width: 600px; /* Increased max-width for sections */
-    margin: 40px auto; /* Increased margin for sections */
+    max-width: 600px; /* Adjusted max-width for sections */
+    margin: 60px auto; /* Increased margin for sections */
     padding: 40px; /* Increased padding for sections */
     border-radius: 20px;
     backdrop-filter: blur(10px);
@@ -142,6 +144,7 @@ nav a:hover {
     transform: translateY(0);
 }
 
+/* Theme specific page-section styling */
 .light-theme .page-section {
     background-color: var(--card-bg-light);
     border-color: var(--border-color-light);
@@ -152,21 +155,22 @@ nav a:hover {
     border-color: var(--border-color-dark);
 }
 
-/* --- Container Styling (Main app content wrapper) --- */
+/* --- Container Styling (Inner wrapper for Magic Shell app) --- */
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 0; /* Removed padding */
-    border-radius: 0; /* Removed border-radius */
-    backdrop-filter: none; /* Removed backdrop-filter */
+    /* Removed all card-like styling - this is now a transparent wrapper */
+    padding: 0;
+    border-radius: 0;
+    backdrop-filter: none;
     -webkit-backdrop-filter: none;
-    border: none; /* Removed border */
-    width: 100%; /* Ensure it fills its parent */
+    border: none;
+    width: 100%;
     max-width: 400px;
-    box-shadow: none; /* Removed box-shadow */
-    transition: none; /* No transition for this wrapper */
+    box-shadow: none;
+    transition: none;
 }
 
 /* --- Main App Elements Styling --- */
@@ -201,8 +205,7 @@ h1#main-title {
     padding: 10px 0;
     font-size: 1.2rem;
     text-align: center;
-    /* Increased spacing */
-    margin-bottom: 40px;
+    margin-bottom: 40px; /* Increased spacing */
     font-family: 'Inter', sans-serif;
     letter-spacing: -0.05em;
     transition: border-color 0.3s;
@@ -316,13 +319,17 @@ h1#main-title {
     body {
         padding-top: 100px; /* More space for nav on small screens */
     }
+    nav {
+        padding: 5px 0;
+    }
     nav ul {
         flex-direction: column;
-        gap: 10px;
+        gap: 5px;
+        padding-top: 10px;
     }
     nav a {
         display: block;
-        padding: 10px 15px;
+        padding: 8px 15px;
     }
     .container, .page-section {
         padding: 20px;
@@ -337,5 +344,11 @@ h1#main-title {
     }
     .page-section h2 {
         font-size: 1.8rem;
+    }
+    #theme-toggle {
+        top: 10px; /* Adjust for smaller nav */
+        right: 10px;
+        padding: 5px 10px;
+        font-size: 0.8rem;
     }
 }
