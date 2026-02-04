@@ -173,3 +173,132 @@ h1#main-title {
     border-color: var(--button-outline-dark);
     color: var(--button-outline-dark);
 }
+
+body {
+    font-family: 'Inter', sans-serif;
+    letter-spacing: -0.05em;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Align items to start for fixed nav */
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding-top: 60px; /* Space for fixed nav */
+    transition: background-color 0.3s, color 0.3s;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 10px 0;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+}
+
+.light-theme nav {
+    border-color: var(--border-color-light);
+    background-color: rgba(245, 245, 247, 0.8);
+}
+
+.dark-theme nav {
+    border-color: var(--border-color-dark);
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 5px 10px;
+    border-radius: 10px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.light-theme nav a {
+    color: var(--text-color-light);
+}
+
+.dark-theme nav a {
+    color: var(--text-color-dark);
+}
+
+nav a:hover {
+    background-color: rgba(128, 128, 128, 0.2);
+}
+
+.page-section {
+    display: none; /* Hide by default */
+    scroll-margin-top: 80px; /* Adjust for fixed nav */
+    width: 90%;
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.page-section.active-section {
+    display: block; /* Show when active */
+}
+
+.light-theme .page-section {
+    background-color: var(--card-bg-light);
+    border-color: var(--border-color-light);
+}
+
+.dark-theme .page-section {
+    background-color: var(--card-bg-dark);
+    border-color: var(--border-color-dark);
+}
+
+.page-section h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.page-section h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.page-section p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.faq-item {
+    margin-bottom: 20px;
+}
+
+.faq-item h3 {
+    cursor: pointer;
+    position: relative;
+    padding-right: 20px;
+}
+
+.faq-item p {
+    margin-left: 15px;
+    display: none; /* Hidden by default */
+}
