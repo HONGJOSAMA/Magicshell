@@ -6,11 +6,25 @@ const themeToggleButton = document.getElementById("theme-toggle");
 const walkieTalkieToggleButton = document.getElementById("walkie-talkie-toggle");
 const body = document.body;
 
+const mainTitle = document.getElementById("main-title");
+const descriptionText = document.getElementById("description-text");
+
+function updateTextContent() {
+    if (body.classList.contains("walkie-talkie-mode")) {
+        mainTitle.textContent = "Report.";
+        descriptionText.textContent = "I will give you an order. Over.";
+    } else {
+        mainTitle.textContent = "Do It or Not?";
+        descriptionText.textContent = "Ask a question and get a random answer.";
+    }
+}
+
 // Check for saved theme preference
 const savedTheme = localStorage.getItem("theme");
 if (savedTheme) {
     body.classList.add(savedTheme);
 }
+updateTextContent(); // Call on page load to set initial text
 
 themeToggleButton.addEventListener("click", () => {
     body.classList.remove("walkie-talkie-mode");
@@ -21,6 +35,7 @@ themeToggleButton.addEventListener("click", () => {
     } else {
         localStorage.setItem("theme", "light");
     }
+    updateTextContent(); // Update text content after theme change
 });
 
 walkieTalkieToggleButton.addEventListener("click", () => {
@@ -32,6 +47,7 @@ walkieTalkieToggleButton.addEventListener("click", () => {
     } else {
         localStorage.setItem("theme", "light");
     }
+    updateTextContent(); // Update text content after theme change
 });
 
 askButton.addEventListener("click", () => {
