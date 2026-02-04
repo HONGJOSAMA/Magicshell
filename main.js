@@ -50,6 +50,12 @@ walkieTalkieToggleButton.addEventListener("click", () => {
     updateTextContent(); // Update text content after theme change
 });
 
+questionInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+        askButton.click();
+    }
+});
+
 askButton.addEventListener("click", () => {
   const question = questionInput.value;
   if (question) {
