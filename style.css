@@ -18,14 +18,15 @@ body {
     letter-spacing: -0.05em;
     display: flex;
     flex-direction: column;
-    /* Align items to start for mobile, center for desktop content */
-    justify-content: flex-start;
+    /* Center content vertically for the main card effect */
+    justify-content: center;
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    /* Space for fixed nav */
+    /* Adjusted padding-top to account for fixed nav */
     padding-top: 70px; 
     transition: background-color 0.3s, color 0.3s;
+    position: relative; /* Needed for theme-toggle absolute positioning */
 }
 
 /* Theme specific body styles */
@@ -39,9 +40,9 @@ body.dark-theme {
     color: var(--text-color-dark);
 }
 
-/* --- Navigation Styling --- */
+/* --- Navigation & Theme Toggle Styling --- */
 #theme-toggle {
-    position: fixed;
+    position: fixed; /* Keep fixed position */
     top: 20px; /* Aligned to top-right corner */
     right: 20px;
     z-index: 1001; /* Higher than nav */
@@ -68,7 +69,7 @@ nav {
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 1000;
+    z-index: 1000; /* Below theme-toggle */
     padding: 10px 0;
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
@@ -92,7 +93,8 @@ nav ul {
     margin: 0;
     display: flex;
     justify-content: center;
-    gap: 30px; /* Increased gap between nav items */
+    /* Increased gap between nav items */
+    gap: 30px;
 }
 
 nav a {
@@ -128,6 +130,7 @@ nav a:hover {
 
     width: 90%;
     max-width: 600px; /* Adjusted max-width for sections */
+    min-height: 400px; /* Adjusted min-height for content proportion */
     margin: 60px auto; /* Increased margin for sections */
     padding: 40px; /* Increased padding for sections */
     border-radius: 20px;
@@ -135,10 +138,14 @@ nav a:hover {
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+    /* Ensure it takes full height within flex container when active */
+    flex: 1; 
 }
 
 .page-section.active-section {
-    display: block !important; /* Show when active */
+    display: flex !important; /* Changed to flex for internal centering */
+    flex-direction: column;
+    justify-content: center; /* Center content within the active section */
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
@@ -168,7 +175,8 @@ nav a:hover {
     -webkit-backdrop-filter: none;
     border: none;
     width: 100%;
-    max-width: 400px;
+    /* max-width is handled by page-section now */
+    max-width: none; 
     box-shadow: none;
     transition: none;
 }

@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // Optionally, scroll to the top of the section (smoothly)
-            targetSection.scrollIntoView({ behavior: 'smooth' });
+            // targetSection.scrollIntoView({ behavior: 'smooth' });
         });
     });
 
