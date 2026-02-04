@@ -1,70 +1,164 @@
 :root {
-    --bg-color: #f0f0f0;
-    --container-bg-color: white;
-    --text-color: #333;
-    --box-shadow-color: rgba(0, 0, 0, 0.1);
-}
+    --bg-color-light: #F5F5F7;
+    --text-color-light: #000000;
+    --card-bg-light: rgba(255, 255, 255, 0.5);
+    --border-color-light: rgba(255, 255, 255, 0.2);
+    --button-outline-light: #000000;
 
-body.dark-mode {
-    --bg-color: #333;
-    --container-bg-color: #444;
-    --text-color: #f0f0f0;
-    --box-shadow-color: rgba(255, 255, 255, 0.1);
+    --bg-color-dark: #000000;
+    --text-color-dark: #FFFFFF;
+    --card-bg-dark: rgba(30, 30, 30, 0.5);
+    --border-color-dark: rgba(255, 255, 255, 0.1);
+    --button-outline-dark: #FFFFFF;
 }
 
 body {
-    font-family: sans-serif;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: -0.05em;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: var(--bg-color); /* Use CSS variable */
     margin: 0;
-    color: var(--text-color); /* Use CSS variable */
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body.light-theme {
+    background-color: var(--bg-color-light);
+    color: var(--text-color-light);
+}
+
+body.dark-theme {
+    background-color: var(--bg-color-dark);
+    color: var(--text-color-dark);
 }
 
 .container {
-    text-align: center;
-    background-color: var(--container-bg-color); /* Use CSS variable */
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px var(--box-shadow-color); /* Use CSS variable */
-    position: relative; /* Keep for general layout */
-    width: 320px; /* Keep for general layout */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, border-color 0.3s;
 }
 
-h1 {
-    font-family: sans-serif;
-    font-size: 2.5rem;
-    color: #333; /* Default text color */
-    margin-bottom: 20px;
+.light-theme .container {
+    background-color: var(--card-bg-light);
+    border-color: var(--border-color-light);
+}
+
+.dark-theme .container {
+    background-color: var(--card-bg-dark);
+    border-color: var(--border-color-dark);
+}
+
+#answer {
+    font-size: 4rem;
+    font-weight: 700;
+    text-align: center;
+    min-height: 80px;
+    margin-bottom: 30px;
+    background: linear-gradient(to right, #C0C0C0, #FFFFFF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 #question {
     width: 100%;
-    padding: 0.5rem;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border: none;
+    background: transparent;
+    border-bottom: 1px solid;
+    padding: 10px 0;
+    font-size: 1.2rem;
+    text-align: center;
+    margin-bottom: 30px;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: -0.05em;
+    transition: border-color 0.3s;
 }
 
-#question::placeholder {
-    color: #546b21;
+.light-theme #question {
+    border-color: var(--text-color-light);
+    color: var(--text-color-light);
+}
+
+.dark-theme #question {
+    border-color: var(--text-color-dark);
+    color: var(--text-color-dark);
 }
 
 #question:focus {
     outline: none;
 }
 
-#answer {
-    margin-top: 1.5rem;
-    font-size: 1.5rem;
-    font-weight: bold;
+#question::placeholder {
+    color: grey;
 }
 
-button {
-    margin-top: 1rem;
-    padding: 0.5rem 1rem;
+#askButton {
+    background: transparent;
+    border: 1px solid;
+    border-radius: 20px;
+    padding: 10px 30px;
+    font-family: 'Inter', sans-serif;
     font-size: 1rem;
     cursor: pointer;
+    transition: background-color 0.2s, color 0.2s, border-color 0.3s;
+}
+
+.light-theme #askButton {
+    border-color: var(--button-outline-light);
+    color: var(--button-outline-light);
+}
+
+.dark-theme #askButton {
+    border-color: var(--button-outline-dark);
+    color: var(--button-outline-dark);
+}
+
+#askButton:hover {
+    background-color: var(--button-outline-dark);
+    color: var(--bg-color-dark);
+}
+
+.dark-theme #askButton:hover {
+    background-color: var(--button-outline-dark);
+    color: var(--bg-color-dark);
+}
+
+.light-theme #askButton:hover {
+    background-color: var(--button-outline-light);
+    color: var(--bg-color-light);
+}
+
+#theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: transparent;
+    border: 1px solid;
+    border-radius: 20px;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.3s;
+}
+
+.light-theme #theme-toggle {
+    border-color: var(--button-outline-light);
+    color: var(--button-outline-light);
+}
+
+.dark-theme #theme-toggle {
+    border-color: var(--button-outline-dark);
+    color: var(--button-outline-dark);
 }

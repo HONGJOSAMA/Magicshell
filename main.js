@@ -1,32 +1,31 @@
-const answers = ["Do It", "Don't Do It", "Yes", "No"];
-const askButton = document.getElementById("askButton");
-const answerDiv = document.getElementById("answer");
-const questionInput = document.getElementById("question");
-const themeToggleButton = document.getElementById("theme-toggle");
-const body = document.body;
+document.addEventListener('DOMContentLoaded', () => {
+    const askButton = document.getElementById('askButton');
+    const answerDiv = document.getElementById('answer');
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
 
-// Check for saved theme preference
-const savedTheme = localStorage.getItem("theme");
-if (savedTheme) {
-    body.classList.add(savedTheme);
-}
+    const answers = ["Do It", "Don't Do It", "Yes", "No"];
 
-themeToggleButton.addEventListener("click", () => {
-    body.classList.toggle("dark-mode");
-    // Save theme preference
-    if (body.classList.contains("dark-mode")) {
-        localStorage.setItem("theme", "dark-mode");
-    } else {
-        localStorage.removeItem("theme");
-    }
-});
+    // Function to set the theme
+    const setTheme = (theme) => {
+        body.className = theme + '-theme';
+        localStorage.setItem('theme', theme);
+    };
 
-askButton.addEventListener("click", () => {
-  const question = questionInput.value;
-  if (question) {
-    const randomIndex = Math.floor(Math.random() * answers.length);
-    answerDiv.textContent = answers[randomIndex];
-  } else {
-    answerDiv.textContent = "Please ask a question first.";
-  }
+    // Theme toggle event
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        setTheme(newTheme);
+    });
+
+    // Load saved theme
+    const savedTheme = localStorage.getItem('theme') || 'dark'; // Default to dark
+    setTheme(savedTheme);
+
+    // Ask button event
+    askButton.addEventListener('click', () => {
+        const randomIndex = Math.floor(Math.random() * answers.length);
+        answerDiv.textContent = answers[randomIndex];
+    });
 });

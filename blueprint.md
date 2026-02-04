@@ -3,26 +3,33 @@
 
 ## Overview
 
-This project is a simple web application that provides a random answer to a user's question from a predefined set of answers: "Do It", "Don't Do It", "Yes", and "No". The UI is styled to resemble a military-grade walkie-talkie (AN/PRC-152) for a unique, rugged aesthetic.
+This project is a minimal, stylish web application that provides a random answer to a user's question from a predefined set of answers. The UI is designed with a "Hip & Minimal" aesthetic, featuring a theme toggle for both light (Off-White) and dark (Deep Black) modes.
 
 ## Implemented Features
 
-*   **User Interface:**
-    *   A clear and simple interface with a title, a text input for the user's question, a button to submit the question, and a designated area to display the answer.
-    *   Responsive design that works on both mobile and desktop browsers.
-*   **Functionality:**
-    *   When the user clicks the "Ask" button, the application randomly selects one of the four possible answers.
-    *   The selected answer is displayed to the user.
+*   **Dual-Theme UI:**
+    *   Users can switch between a light Off-White (#F5F5F7) and a deep Deep Black (#000000) theme.
+    *   The theme preference is saved in the user's browser.
+    *   The main content is presented in a clean, card-style layout with a subtle **Glassmorphism** effect.
+*   **Modern Typography:**
+    *   Uses the 'Inter' San-serif font for a clean, modern look.
+    *   Features tight letter-spacing for a stylish, "hip" feel.
+*   **Dynamic Answer Display:**
+    *   The answer to the user's query is displayed prominently in the center of the screen.
+    *   The answer text is styled with a premium silver-to-white gradient.
+*   **Minimalist Controls:**
+    *   The "Ask" button is styled with a simple, clean outline.
+    *   A theme toggle button allows for easy switching between light and dark modes.
+*   **Core Functionality:**
+    *   When the user clicks the "Ask" button, the application randomly selects and displays an answer from "Do It", "Don't Do It", "Yes", and "No".
 
 ## Current Plan
 
-*   **Objective:** Redesign the application to mimic the look and feel of a military walkie-talkie (AN/PRC-152).
+*   **Objective:** Redesign the application to a "Hip & Minimal" aesthetic with a dual-theme (light/dark) capability.
 *   **Steps:**
-    1.  **Background:** Apply a dark wood texture to the page background.
-    2.  **Main Container:**
-        *   Restyle the main container to look like the body of a walkie-talkie using an Olive Drab color scheme and a metallic texture.
-        *   Add bolt/screw details to the corners for a more mechanical look.
-    3.  **Title:** Change the title to "Report." and style it with a red, digital/dot-matrix font to resemble a device's alert screen.
-    4.  **Input Field:** Redesign the question input area to look like an LCD frequency display.
-    5.  **Button:** Transform the "Ask" button into a three-dimensional, orange Push-to-Talk (PTT) button.
-    6.  **Layout:** Adjust the overall layout to feel more rugged, mechanical, and authentic to the source inspiration.
+    1.  **Background & Theme:** Implement a theme-switcher for a Deep Black and an Off-White background.
+    2.  **Main Container:** Restyle the container as a clean card with a subtle Glassmorphism effect (semi-transparent background, blur, and a fine border).
+    3.  **Typography:** Change the font to 'Inter' and adjust letter-spacing for a modern, compact look.
+    4.  **Answer Styling:** Make the answer text large, centered, and apply a silver-to-white gradient.
+    5.  **Button Redesign:** Style the 'Ask' button with a minimal outline design.
+    6.  **Add Theme Toggle:** Implement a button and the necessary JavaScript to switch themes and save the user's preference.

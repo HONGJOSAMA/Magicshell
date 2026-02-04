@@ -3,21 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Magic Shell</title>
+    <title>Do It or Not? - Minimalist Edition</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <button id="theme-toggle">Toggle Theme</button>
+
     <div class="container">
         <h1 id="main-title">Magic Shell</h1>
-        <p id="description-text">Ask a question and get a random answer.</p>
-        
-        <input type="text" id="question" placeholder="Enter your question here">
-        
+        <p id="description-text">Random, but right.</p>
         <div id="answer"></div>
-        
+        <input type="text" id="question" placeholder="What is your question?">
         <button id="askButton">Ask</button>
-        <button id="theme-toggle">Toggle Theme</button>
     </div>
+
     <script src="main.js"></script>
 </body>
 </html>
