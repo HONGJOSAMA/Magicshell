@@ -60,13 +60,24 @@ body.dark-theme {
     border-color: var(--border-color-dark);
 }
 
+h1#main-title {
+    font-size: 3rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 20px;
+    background: linear-gradient(to right, #8A2BE2, #4169E1); /* Purple to RoyalBlue */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
 #answer {
     font-size: 4rem;
     font-weight: 700;
     text-align: center;
     min-height: 80px;
     margin-bottom: 30px;
-    background: linear-gradient(to right, #C0C0C0, #FFFFFF);
+    background: linear-gradient(to right, #8A2BE2, #4169E1); /* Purple to RoyalBlue - Same as h1 */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;

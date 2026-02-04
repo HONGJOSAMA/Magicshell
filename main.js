@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeToggle = document.getElementById('theme-toggle');
     const body = document.body;
 
-    const answers = ["Do It", "Don't Do It", "Yes", "No"];
+    const answers = ["Sure", "Pass", "Go", "Wait"];
 
     // Function to set the theme
     const setTheme = (theme) => {
