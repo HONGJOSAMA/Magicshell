@@ -173,3 +173,112 @@ h1#main-title {
     border-color: var(--button-outline-dark);
     color: var(--button-outline-dark);
 }
+
+nav {
+    width: 100%;
+    margin-top: 20px;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 5px 10px;
+    border-radius: 10px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.light-theme nav a {
+    color: var(--text-color-light);
+}
+
+.dark-theme nav a {
+    color: var(--text-color-dark);
+}
+
+nav a:hover {
+    background-color: rgba(128, 128, 128, 0.2);
+}
+
+.page-section {
+    width: 90%;
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.light-theme .page-section {
+    background-color: var(--card-bg-light);
+    border-color: var(--border-color-light);
+}
+
+.dark-theme .page-section {
+    background-color: var(--card-bg-dark);
+    border-color: var(--border-color-dark);
+}
+
+.page-section h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.page-section h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.page-section p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.faq-item {
+    margin-bottom: 20px;
+}
+
+.faq-item h3 {
+    cursor: pointer;
+    position: relative;
+    padding-right: 20px;
+}
+
+.faq-item p {
+    margin-left: 15px;
+    display: none; /* Hidden by default */
+}
+
+/* Add some basic responsiveness */
+@media (max-width: 600px) {
+    .container, .page-section {
+        padding: 20px;
+        width: auto;
+    }
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+    nav a {
+        display: block;
+    }
+}
