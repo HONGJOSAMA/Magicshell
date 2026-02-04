@@ -138,8 +138,6 @@ nav a:hover {
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
-    /* Ensure it takes full height within flex container when active */
-    flex: 1; 
 }
 
 .page-section.active-section {
@@ -149,6 +147,7 @@ nav a:hover {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
+    flex: 1; /* Allow active section to grow and push content */
 }
 
 /* Theme specific page-section styling */
@@ -163,22 +162,23 @@ nav a:hover {
 }
 
 /* --- Container Styling (Inner wrapper for Magic Shell app) --- */
+/* The .container is now purely a structural element within #home.page-section,
+   and does not carry visual card styling. Its purpose is to wrap the main app content
+   and manage its internal flex layout. */
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    /* Removed all card-like styling - this is now a transparent wrapper */
-    padding: 0;
-    border-radius: 0;
-    backdrop-filter: none;
+    padding: 0; /* Removed padding */
+    border-radius: 0; /* Removed border-radius */
+    backdrop-filter: none; /* Removed backdrop-filter */
     -webkit-backdrop-filter: none;
-    border: none;
+    border: none; /* Removed border */
     width: 100%;
-    /* max-width is handled by page-section now */
-    max-width: none; 
+    max-width: none; /* Max-width is handled by page-section now */
     box-shadow: none;
-    transition: none;
+    transition: none; /* No transition for this wrapper */
 }
 
 /* --- Main App Elements Styling --- */
@@ -339,7 +339,7 @@ h1#main-title {
         display: block;
         padding: 8px 15px;
     }
-    .container, .page-section {
+    .page-section {
         padding: 20px;
         width: auto;
         margin: 20px auto;
