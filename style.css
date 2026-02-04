@@ -17,10 +17,13 @@ body {
     letter-spacing: -0.05em;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* Changed justify-content to flex-start to allow sections to stack from top */
+    justify-content: flex-start;
     align-items: center;
     min-height: 100vh;
     margin: 0;
+    /* Adjusted padding-top to account for fixed nav */
+    padding-top: 70px;
     transition: background-color 0.3s, color 0.3s;
 }
 
@@ -34,37 +37,144 @@ body.dark-theme {
     color: var(--text-color-dark);
 }
 
+/* --- Navigation Styling --- */
+#theme-toggle {
+    position: fixed; /* Changed to fixed to better manage z-index with nav */
+    top: 20px;
+    right: 20px;
+    z-index: 1001; /* Higher than nav */
+    background: transparent;
+    border: 1px solid;
+    border-radius: 20px;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.3s;
+}
+
+.light-theme #theme-toggle {
+    border-color: var(--button-outline-light);
+    color: var(--button-outline-light);
+}
+
+.dark-theme #theme-toggle {
+    border-color: var(--button-outline-dark);
+    color: var(--button-outline-dark);
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000; /* Below theme-toggle */
+    padding: 10px 0;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+}
+
+.light-theme nav {
+    border-color: var(--border-color-light);
+    background-color: rgba(245, 245, 247, 0.8);
+}
+
+.dark-theme nav {
+    border-color: var(--border-color-dark);
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    /* Increased gap between nav items */
+    gap: 30px;
+}
+
+nav a {
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 5px 10px;
+    border-radius: 10px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.light-theme nav a {
+    color: var(--text-color-light);
+}
+
+.dark-theme nav a {
+    color: var(--text-color-dark);
+}
+
+nav a:hover {
+    background-color: rgba(128, 128, 128, 0.2);
+}
+
+/* --- Page Sections Styling --- */
+.page-section {
+    /* Hide by default */
+    display: none !important;
+    opacity: 0; /* For smooth transition */
+    visibility: hidden; /* For smooth transition */
+    transform: translateY(20px); /* For smooth transition */
+    transition: opacity 0.5s ease, visibility 0.5s ease, transform 0.5s ease;
+
+    width: 90%;
+    max-width: 600px; /* Increased max-width for sections */
+    margin: 40px auto; /* Increased margin for sections */
+    padding: 40px; /* Increased padding for sections */
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+}
+
+.page-section.active-section {
+    display: block !important; /* Show when active */
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.light-theme .page-section {
+    background-color: var(--card-bg-light);
+    border-color: var(--border-color-light);
+}
+
+.dark-theme .page-section {
+    background-color: var(--card-bg-dark);
+    border-color: var(--border-color-dark);
+}
+
+/* --- Container Styling (Main app content wrapper) --- */
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 40px;
-    border-radius: 20px;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid;
-    width: 90%;
+    padding: 0; /* Removed padding */
+    border-radius: 0; /* Removed border-radius */
+    backdrop-filter: none; /* Removed backdrop-filter */
+    -webkit-backdrop-filter: none;
+    border: none; /* Removed border */
+    width: 100%; /* Ensure it fills its parent */
     max-width: 400px;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s, border-color 0.3s;
+    box-shadow: none; /* Removed box-shadow */
+    transition: none; /* No transition for this wrapper */
 }
 
-.light-theme .container {
-    background-color: var(--card-bg-light);
-    border-color: var(--border-color-light);
-}
-
-.dark-theme .container {
-    background-color: var(--card-bg-dark);
-    border-color: var(--border-color-dark);
-}
-
+/* --- Main App Elements Styling --- */
 h1#main-title {
     font-size: 3rem;
     font-weight: 700;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 40px; /* Increased spacing */
     background: linear-gradient(to right, #8A2BE2, #4169E1); /* Purple to RoyalBlue */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -91,7 +201,8 @@ h1#main-title {
     padding: 10px 0;
     font-size: 1.2rem;
     text-align: center;
-    margin-bottom: 30px;
+    /* Increased spacing */
+    margin-bottom: 40px;
     font-family: 'Inter', sans-serif;
     letter-spacing: -0.05em;
     transition: border-color 0.3s;
@@ -151,154 +262,80 @@ h1#main-title {
     color: var(--bg-color-light);
 }
 
-#theme-toggle {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background: transparent;
-    border: 1px solid;
-    border-radius: 20px;
-    padding: 8px 12px;
-    cursor: pointer;
-    font-family: 'Inter', sans-serif;
-    transition: all 0.3s;
-}
-
-.light-theme #theme-toggle {
-    border-color: var(--button-outline-light);
-    color: var(--button-outline-light);
-}
-
-.dark-theme #theme-toggle {
-    border-color: var(--button-outline-dark);
-    color: var(--button-outline-dark);
-}
-
-body {
-    font-family: 'Inter', sans-serif;
-    letter-spacing: -0.05em;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start; /* Align items to start for fixed nav */
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
-    padding-top: 60px; /* Space for fixed nav */
-    transition: background-color 0.3s, color 0.3s;
-}
-
-nav {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-    padding: 10px 0;
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    border-bottom: 1px solid rgba(128, 128, 128, 0.2);
-    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
-}
-
-.light-theme nav {
-    border-color: var(--border-color-light);
-    background-color: rgba(245, 245, 247, 0.8);
-}
-
-.dark-theme nav {
-    border-color: var(--border-color-dark);
-    background-color: rgba(0, 0, 0, 0.8);
-}
-
-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
-nav a {
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 0.9rem;
-    padding: 5px 10px;
-    border-radius: 10px;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-.light-theme nav a {
-    color: var(--text-color-light);
-}
-
-.dark-theme nav a {
-    color: var(--text-color-dark);
-}
-
-nav a:hover {
-    background-color: rgba(128, 128, 128, 0.2);
-}
-
-.page-section {
-    display: none; /* Hide by default */
-    scroll-margin-top: 80px; /* Adjust for fixed nav */
-    width: 90%;
-    max-width: 600px;
-    margin: 40px auto;
-    padding: 30px;
-    border-radius: 20px;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s, border-color 0.3s;
-}
-
-.page-section.active-section {
-    display: block; /* Show when active */
-}
-
-.light-theme .page-section {
-    background-color: var(--card-bg-light);
-    border-color: var(--border-color-light);
-}
-
-.dark-theme .page-section {
-    background-color: var(--card-bg-dark);
-    border-color: var(--border-color-dark);
-}
-
+/* --- Page Section Inner Content Styling --- */
 .page-section h2 {
     font-size: 2rem;
     font-weight: 700;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px; /* Increased spacing */
 }
 
 .page-section h3 {
     font-size: 1.3rem;
     font-weight: 700;
-    margin-top: 20px;
-    margin-bottom: 10px;
+    margin-top: 25px; /* Increased spacing */
+    margin-bottom: 15px; /* Increased spacing */
 }
 
 .page-section p {
     font-size: 1rem;
-    line-height: 1.6;
-    margin-bottom: 15px;
+    line-height: 1.8; /* Increased line height */
+    margin-bottom: 20px; /* Increased spacing */
 }
 
 .faq-item {
-    margin-bottom: 20px;
+    margin-bottom: 25px; /* Increased spacing */
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.light-theme .faq-item {
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark-theme .faq-item {
+    background-color: rgba(30, 30, 30, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .faq-item h3 {
     cursor: pointer;
     position: relative;
-    padding-right: 20px;
+    padding-right: 30px; /* Space for potential indicator icon */
 }
 
 .faq-item p {
-    margin-left: 15px;
+    margin-left: 0; /* Reset margin */
+    margin-top: 10px;
     display: none; /* Hidden by default */
+}
+
+/* Add some basic responsiveness */
+@media (max-width: 600px) {
+    body {
+        padding-top: 100px; /* More space for nav on small screens */
+    }
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+    nav a {
+        display: block;
+        padding: 10px 15px;
+    }
+    .container, .page-section {
+        padding: 20px;
+        width: auto;
+        margin: 20px auto;
+    }
+    h1#main-title {
+        font-size: 2.5rem;
+    }
+    #answer {
+        font-size: 3rem;
+    }
+    .page-section h2 {
+        font-size: 1.8rem;
+    }
 }
