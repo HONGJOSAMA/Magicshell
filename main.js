@@ -42,4 +42,15 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // FAQ Toggle functionality
+    const faqQuestions = document.querySelectorAll('.faq-item h3');
+    faqQuestions.forEach(question => {
+        question.addEventListener('click', () => {
+            const answer = question.nextElementSibling;
+            if (answer && answer.tagName === 'P') {
+                answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+            }
+        });
+    });
 });
