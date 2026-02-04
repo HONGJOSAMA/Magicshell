@@ -3,20 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Do It or Not?</title>
+    <title>Do It or Not? - AN/PRC-152</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto+Mono&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
-        <div id="walkie-talkie-text-box">
-            <h1 id="main-title">Do It or Not?</h1>
-            <p id="description-text">Ask a question and get a random answer.</p>
+        <div class="bolt bolt-tl"></div>
+        <div class="bolt bolt-tr"></div>
+        <div class="bolt bolt-bl"></div>
+        <div class="bolt bolt-br"></div>
+        
+        <h1>Report.</h1>
+        
+        <div class="screen">
+            <input type="text" id="question" placeholder="Enter your query...">
         </div>
-        <input type="text" id="question" placeholder="Enter your question here">
-        <button id="askButton">Ask</button>
+        
         <div id="answer"></div>
-        <button id="theme-toggle">Toggle Theme</button>
-        <button id="walkie-talkie-toggle">Walkie Talkie Mode</button>
+        
+        <button id="askButton">PTT</button>
     </div>
     <script src="main.js"></script>
 </body>

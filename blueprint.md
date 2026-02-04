@@ -3,7 +3,7 @@
 
 ## Overview
 
-This project is a simple web application that provides a random answer to a user's question from a predefined set of answers: "Do It", "Don't Do It", "Yes", and "No".
+This project is a simple web application that provides a random answer to a user's question from a predefined set of answers: "Do It", "Don't Do It", "Yes", and "No". The UI is styled to resemble a military-grade walkie-talkie (AN/PRC-152) for a unique, rugged aesthetic.
 
 ## Implemented Features
 
@@ -16,6 +16,13 @@ This project is a simple web application that provides a random answer to a user
 
 ## Current Plan
 
-*   Create the basic HTML structure for the application.
-*   Style the application using CSS for a visually appealing layout.
-*   Implement the JavaScript logic to handle user interaction and generate random answers.
+*   **Objective:** Redesign the application to mimic the look and feel of a military walkie-talkie (AN/PRC-152).
+*   **Steps:**
+    1.  **Background:** Apply a dark wood texture to the page background.
+    2.  **Main Container:**
+        *   Restyle the main container to look like the body of a walkie-talkie using an Olive Drab color scheme and a metallic texture.
+        *   Add bolt/screw details to the corners for a more mechanical look.
+    3.  **Title:** Change the title to "Report." and style it with a red, digital/dot-matrix font to resemble a device's alert screen.
+    4.  **Input Field:** Redesign the question input area to look like an LCD frequency display.
+    5.  **Button:** Transform the "Ask" button into a three-dimensional, orange Push-to-Talk (PTT) button.
+    6.  **Layout:** Adjust the overall layout to feel more rugged, mechanical, and authentic to the source inspiration.

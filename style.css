@@ -1,78 +1,104 @@
-:root {
-    --bg-color: #f0f0f0;
-    --container-bg-color: white;
-    --text-color: #333;
-    --box-shadow-color: rgba(0, 0, 0, 0.1);
-}
-
-body.dark-mode {
-    --bg-color: #333;
-    --container-bg-color: #444;
-    --text-color: #f0f0f0;
-    --box-shadow-color: rgba(255, 255, 255, 0.1);
-}
-
-body.walkie-talkie-mode {
-    --bg-color: #204020; /* Dark green background */
-    --container-bg-color: #2a2a2a; /* Darker grey for container */
-    --text-color: #ff4141;
-    --box-shadow-color: rgba(0, 0, 0, 0.5);
-    font-family: 'Courier New', Courier, monospace;
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAANElEQVR42u3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACANw0jAAGGc2APAAAAAElFTkSuQmCC');
-}
-
-body.walkie-talkie-mode #walkie-talkie-text-box {
-    background-color: black;
-    border-radius: 10px;
-    padding: 1rem;
-    margin-bottom: 1rem; /* Add some space below the box */
-}
-
 body {
-    font-family: sans-serif;
+    font-family: 'Roboto Mono', monospace;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: var(--bg-color);
-    color: var(--text-color);
+    background-image: url('https://www.transparenttextures.com/patterns/dark-wood.png');
+    background-color: #3d3a3a;
     margin: 0;
+    color: #fff;
 }
 
 .container {
+    position: relative;
+    width: 320px;
+    padding: 30px;
+    background-color: #556B2F; /* Olive Drab */
+    border: 3px solid #3a4a20;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5), inset 0 0 15px rgba(0,0,0,0.7);
+    background-image: linear-gradient(45deg, rgba(255,255,255,0.05) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0.05) 75%, transparent 75%, transparent);
+    background-size: 60px 60px;
     text-align: center;
-    background-color: var(--container-bg-color);
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px var(--box-shadow-color);
 }
 
-button {
-    margin-top: 1rem;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    cursor: pointer;
-    border: 1px solid transparent;
-    border-radius: 5px;
-    background-color: #eee;
-    color: #333;
+.bolt {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: #4a4a4a;
+    border: 1px solid #2a2a2a;
+    border-radius: 50%;
+    box-shadow: inset 0 0 3px rgba(0,0,0,0.8);
 }
 
-body.walkie-talkie-mode button {
-    background-color: #555;
-    color: #eee;
-    border: 1px solid #777;
-    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+.bolt-tl { top: 15px; left: 15px; }
+.bolt-tr { top: 15px; right: 15px; }
+.bolt-bl { bottom: 15px; left: 15px; }
+.bolt-br { bottom: 15px; right: 15px; }
+
+h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.5rem;
+    color: #ff4141;
+    text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000, 0 0 15px #ff0000;
+    margin-bottom: 20px;
 }
 
-body.walkie-talkie-mode #askButton {
-    background-color: #ff8c00; /* Orange accent for PTT */
-    color: white;
-    font-weight: bold;
+.screen {
+    background-color: #9ACD32; /* YellowGreen */
+    border: 2px solid #3a4a20;
+    border-radius: 8px;
+    padding: 10px;
+    margin: 20px 0;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.6);
+}
+
+#question {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: #2e3b14;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+#question::placeholder {
+    color: #546b21;
+}
+
+#question:focus {
+    outline: none;
 }
 
 #answer {
-    margin-top: 1.5rem;
+    margin: 20px 0;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #9ACD32;
+    text-shadow: 0 0 3px #000;
+    min-height: 30px;
+}
+
+#askButton {
+    width: 80px;
+    height: 80px;
+    background-color: #FF8C00; /* DarkOrange */
+    border-radius: 50%;
+    border: 5px solid #d97800;
+    color: white;
     font-size: 1.5rem;
     font-weight: bold;
+    cursor: pointer;
+    text-shadow: 1px 1px 2px #000;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.4), inset 0 0 10px rgba(255,255,255,0.3);
+    transition: all 0.1s ease;
+}
+
+#askButton:active {
+    transform: translateY(3px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.4), inset 0 0 10px rgba(0,0,0,0.5);
+    background-color: #e07b00;
 }
