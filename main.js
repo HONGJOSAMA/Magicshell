@@ -135,12 +135,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.querySelectorAll('nav a');
     const pageSections = document.querySelectorAll('.page-section');
 
-    const hamburgerButton = document.getElementById('hamburger-button');
+    const menuToggleButton = document.getElementById('menu-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
     const mobileMenuLinks = document.querySelectorAll('#mobile-menu ul li a');
 
-    if (hamburgerButton && mobileMenu) {
-        hamburgerButton.addEventListener('click', () => {
+    if (menuToggleButton && mobileMenu) {
+        menuToggleButton.addEventListener('click', () => {
             mobileMenu.classList.toggle('menu-open');
         });
 
