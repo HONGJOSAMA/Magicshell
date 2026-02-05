@@ -135,6 +135,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.querySelectorAll('nav a');
     const pageSections = document.querySelectorAll('.page-section');
 
+    const hamburgerButton = document.getElementById('hamburger-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuLinks = document.querySelectorAll('#mobile-menu ul li a');
+
+    if (hamburgerButton && mobileMenu) {
+        hamburgerButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('menu-open');
+        });
+
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('menu-open');
+            });
+        });
+
+        // Close mobile menu when clicking outside of it
+        document.addEventListener('click', (event) => {
+            if (!mobileMenu.contains(event.target) && !hamburgerButton.contains(event.target) && mobileMenu.classList.contains('menu-open')) {
+                mobileMenu.classList.remove('menu-open');
+            }
+        });
+    }
+
     // Show the home section by default (or the section corresponding to the current URL hash)
     const currentHash = window.location.hash || '#home';
     const initialSection = document.querySelector(currentHash);
