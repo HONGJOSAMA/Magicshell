@@ -3,9 +3,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const answerDiv = document.getElementById('answer');
     const themeToggle = document.getElementById('theme-toggle');
     const questionInput = document.getElementById('question');
+    const starButtonContainer = document.getElementById('star-button-container');
+    const starIcon = document.getElementById('star-icon');
+    const starCountSpan = document.getElementById('star-count');
     const body = document.body; // body is always present
 
     const answers = ["Sure", "Pass", "Go", "Wait"];
+
+    let starCount = parseInt(localStorage.getItem('starCount') || '0', 10);
+    starCountSpan.textContent = starCount;
 
     // Function to set the theme
     const setTheme = (theme) => {
@@ -23,6 +29,20 @@ document.addEventListener('DOMContentLoaded', () => {
             const currentTheme = localStorage.getItem('theme') || 'dark';
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
             setTheme(newTheme);
+        });
+    }
+
+    if (starButtonContainer && starIcon && starCountSpan) {
+        starButtonContainer.addEventListener('click', () => {
+            starCount++;
+            starCountSpan.textContent = starCount;
+            localStorage.setItem('starCount', starCount);
+
+            // Add twinkle animation
+            starIcon.classList.add('twinkle');
+            starIcon.addEventListener('animationend', () => {
+                starIcon.classList.remove('twinkle');
+            }, { once: true });
         });
     }
 
