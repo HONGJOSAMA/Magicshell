@@ -10,8 +10,64 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const answers = ["Sure", "Pass", "Go", "Wait"];
 
-    let starCount = parseInt(localStorage.getItem('starCount') || '0', 10);
-    starCountSpan.textContent = starCount;
+    // --- Utility for UUID generation ---
+    function generateUUID() {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+            var r = Math.random() * 16 | 0,
+                v = c == 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+        });
+    }
+
+    // Get or create unique user ID
+    let userId = localStorage.getItem('userId');
+    if (!userId) {
+        userId = generateUUID();
+        localStorage.setItem('userId', userId);
+    }
+
+    // --- Firebase Setup ---
+    // IMPORTANT: Replace with your actual Firebase project configuration
+    const firebaseConfig = {
+        apiKey: "YOUR_API_KEY",
+        authDomain: "YOUR_AUTH_DOMAIN",
+        databaseURL: "YOUR_DATABASE_URL",
+        projectId: "YOUR_PROJECT_ID",
+        storageBucket: "YOUR_STORAGE_BUCKET",
+        messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+        appId: "YOUR_APP_ID"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
+    const likesRef = database.ref('likes');
+    const userLikesRef = database.ref('users/' + userId + '/clickedStar');
+
+    let userHasClicked = false; // Flag to track if the current user has clicked
+
+    // Check user's click status on load
+    userLikesRef.once('value', (snapshot) => {
+        if (snapshot.val() === true) {
+            userHasClicked = true;
+            starButtonContainer.classList.add('disabled');
+        }
+    });
+
+    // Real-time synchronization of global likes count
+    likesRef.on('value', (snapshot) => {
+        const currentLikes = snapshot.val();
+        if (currentLikes !== null) {
+            starCountSpan.textContent = currentLikes;
+            // Trigger pop-up animation
+            starCountSpan.classList.remove('pop-up'); // Reset animation
+            void starCountSpan.offsetWidth; // Trigger reflow
+            starCountSpan.classList.add('pop-up');
+        } else {
+            starCountSpan.textContent = 0; // Default to 0 if no likes yet
+        }
+    });
+    // --- End Firebase Setup ---
 
     // Function to set the theme
     const setTheme = (theme) => {
@@ -34,9 +90,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (starButtonContainer && starIcon && starCountSpan) {
         starButtonContainer.addEventListener('click', () => {
-            starCount++;
-            starCountSpan.textContent = starCount;
-            localStorage.setItem('starCount', starCount);
+            if (userHasClicked) {
+                return; // Do nothing if user has already clicked
+            }
+
+            // Use Firebase transaction to increment global likes
+            likesRef.transaction((currentLikes) => {
+                return (currentLikes || 0) + 1;
+            }).then(() => {
+                // Update user's click status after successful global increment
+                userLikesRef.set(true);
+                userHasClicked = true;
+                starButtonContainer.classList.add('disabled');
+            });
 
             // Add twinkle animation
             starIcon.classList.add('twinkle');
