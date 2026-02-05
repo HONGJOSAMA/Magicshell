@@ -77,6 +77,32 @@ body.dark-theme {
     cursor: not-allowed;
 }
 
+#hamburger-button {
+    display: none; /* Hidden by default, shown on mobile */
+    position: fixed;
+    top: 20px;
+    right: 200px; /* Adjust to be next to theme toggle */
+    z-index: 1002; /* Higher than other buttons */
+    background: transparent;
+    border: 1px solid;
+    border-radius: 20px;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.3s;
+}
+
+.light-theme #hamburger-button {
+    border-color: var(--button-outline-light);
+    color: var(--button-outline-light);
+}
+
+.dark-theme #hamburger-button {
+    border-color: var(--button-outline-dark);
+    color: var(--button-outline-dark);
+}
+
 .light-theme #star-button-container {
     border-color: var(--button-outline-light);
     color: var(--button-outline-light);
@@ -155,10 +181,63 @@ nav ul {
     list-style: none;
     padding: 0;
     margin: 0;
-    display: flex;
+    display: flex; /* Always flex for desktop */
     justify-content: center;
-    /* Increased gap between nav items */
     gap: 30px;
+}
+
+#mobile-menu {
+    display: none !important; /* Hidden by default for desktop, controlled by JS for mobile */
+    position: fixed; /* Position the menu container */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent overlay */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 1000; /* Below hamburger button */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-100%); /* Start off-screen */
+    transition: opacity 0.4s ease-out, visibility 0.4s ease-out, transform 0.4s ease-out;
+    flex-direction: column; /* Stack menu items vertically */
+    justify-content: center;
+    align-items: center;
+}
+
+#mobile-menu.menu-open {
+    display: flex !important; /* Show with flexbox when open */
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0); /* Slide down */
+}
+
+#mobile-menu ul {
+    flex-direction: column; /* Force vertical menu on mobile */
+    gap: 20px;
+    padding: 0;
+    text-align: center;
+}
+
+#mobile-menu ul li a {
+    font-size: 1.5rem;
+    padding: 15px 0;
+    display: block;
+    width: 100%;
+    color: var(--text-color-dark); /* Ensure readability on dark overlay */
+}
+
+.light-theme #mobile-menu ul li a {
+    color: var(--text-color-dark); /* Ensure readability on dark overlay */
+}
+
+.dark-theme #mobile-menu ul li a {
+    color: var(--text-color-dark); /* Ensure readability on dark overlay */
+}
+
+.light-theme #mobile-menu {
+    background-color: rgba(255, 255, 255, 0.7);
 }
 
 nav a {
@@ -387,6 +466,27 @@ h1#main-title {
 }
 
 /* Add some basic responsiveness */
+@media (max-width: 768px) {
+    nav ul {
+        display: none !important; /* Hide regular desktop nav forcefully */
+    }
+    #hamburger-button {
+        display: block; /* Show hamburger button */
+    }
+    /* Adjust positioning of other top-right elements to avoid overlap */
+    #theme-toggle {
+        top: 20px;
+        right: 140px; /* Original right for theme-toggle */
+    }
+    #star-button-container {
+        top: 20px;
+        right: 20px; /* Original right for star-button */
+    }
+    #hamburger-button { /* Re-adjust for 768px+ screens if not already done */
+        right: 200px;
+    }
+}
+
 @media (max-width: 600px) {
     body {
         padding-top: 100px; /* More space for nav on small screens */
@@ -394,15 +494,8 @@ h1#main-title {
     nav {
         padding: 5px 0;
     }
-    nav ul {
-        flex-direction: column;
-        gap: 5px;
-        padding-top: 10px;
-    }
-    nav a {
-        display: block;
-        padding: 8px 15px;
-    }
+    /* nav ul is already hidden by 768px media query, no need to re-hide */
+    /* nav a is styled within #mobile-menu ul li a for mobile menu */
     .page-section {
         padding: 20px;
         width: auto;
@@ -419,13 +512,19 @@ h1#main-title {
     }
     #theme-toggle {
         top: 10px; /* Adjust for smaller nav */
-        right: 80px; /* Adjusted to make space for star button */
+        right: 80px;
         padding: 5px 10px;
         font-size: 0.8rem;
     }
     #star-button-container {
         top: 10px;
         right: 10px;
+        padding: 5px 10px;
+        font-size: 0.8rem;
+    }
+    #hamburger-button {
+        top: 10px;
+        right: 150px; /* Position next to theme toggle */
         padding: 5px 10px;
         font-size: 0.8rem;
     }
