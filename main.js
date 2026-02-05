@@ -28,14 +28,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Firebase Setup ---
     // IMPORTANT: Replace with your actual Firebase project configuration
+    // The databaseURL and projectId have been updated.
+    // You still need to fill in apiKey, authDomain, storageBucket, messagingSenderId, and appId.
     const firebaseConfig = {
-        apiKey: "YOUR_API_KEY",
-        authDomain: "YOUR_AUTH_DOMAIN",
-        databaseURL: "YOUR_DATABASE_URL",
-        projectId: "YOUR_PROJECT_ID",
-        storageBucket: "YOUR_STORAGE_BUCKET",
-        messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-        appId: "YOUR_APP_ID"
+        apiKey: "YOUR_API_KEY", // FILL THIS IN
+        authDomain: "YOUR_AUTH_DOMAIN", // FILL THIS IN
+        databaseURL: "https://second-golden-bat-149961-b0854-default-rtdb.firebaseio.com/",
+        projectId: "second-golden-bat-149961-b0854",
+        storageBucket: "YOUR_STORAGE_BUCKET", // FILL THIS IN
+        messagingSenderId: "YOUR_MESSAGING_SENDER_ID", // FILL THIS IN
+        appId: "YOUR_APP_ID" // FILL THIS IN
     };
 
     // Initialize Firebase
